@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "1042779880643",
+    "project_id": "face-book-43906",
+    "storage_bucket": "face-book-43906.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1042779880643:android:e925a414c7758bc502f676",
+        "android_client_info": {
+          "package_name": "com.example.assignment3"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1042779880643-m8jta7erpfs3jts0ftngl037lltumi3p.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBrohDhurj9tpRxid7HwEUOOxGWY7fMFxE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1042779880643-m8jta7erpfs3jts0ftngl037lltumi3p.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
