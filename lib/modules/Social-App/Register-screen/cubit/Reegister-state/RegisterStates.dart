@@ -16,5 +16,11 @@ class RegisterSignUpErrorState extends RegisterState{
 }
 class RegisterSignUpLoading extends RegisterState{}
 
+class RegisterCreateUserErrorState extends RegisterState{
+}
+
+
+
+
 
 

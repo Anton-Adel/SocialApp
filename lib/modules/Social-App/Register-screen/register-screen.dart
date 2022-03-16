@@ -306,7 +306,7 @@ class SignUp extends StatelessWidget {
                                         RegisterCubit.get(context).Register(
                                             email: _emailController.text,
                                             password: _passwordController.text,
-                                            name: (_firstnameController.text +
+                                            name: (_firstnameController.text +" "+
                                                 _surnameController.text),
                                             phone: _phonenumberController.text,
                                             gender: RegisterCubit.get(context).gender!,
