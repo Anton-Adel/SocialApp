@@ -2,6 +2,7 @@
 
 // ignore_for_file: file_names
 
+import 'package:assignment3/Layout/Cubit.dart';
 import 'package:assignment3/modules/Social-App/Profile-Screen/profile-screen.dart';
 import 'package:assignment3/modules/Social-App/Register-screen/register-screen.dart';
 import 'package:assignment3/shared/cross-the-app/component.dart';
@@ -32,12 +33,14 @@ class LoginScreen extends StatelessWidget {
         listener: (context,state){
           if(state is LoginSuccessState)
           {
+
             CashHelper.SetData(key: 'uId', value: state.uId).then((value){
               ScaffoldMessenger.of(context)
                   .showSnackBar(SnackBar(
                   content: Text(
                       "Welcome")));
               uid=state.uId!;
+              layoutCubit.get(context).getUser();
               navigate(context, ProfileScreen());
 
             }).catchError((error){
