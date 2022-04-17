@@ -3,6 +3,8 @@
 
 import 'package:assignment3/Layout/Cubit.dart';
 import 'package:assignment3/Layout/States.dart';
+import 'package:assignment3/modules/Social-App/login-screen/Login-Screen.dart';
+import 'package:assignment3/shared/network/Local/CashHelper.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -10,25 +12,25 @@ class ProfileScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
 
-    return BlocProvider(
-      create: (BuildContext context) => layoutCubit()..getUser(),
-      child: BlocConsumer<layoutCubit, LayoutState>(
-        listener: (context,state){},
-        builder: (context,state){
-          var cubit=layoutCubit.get(context);
-          var Model=cubit.model;
-          return Model != null? Scaffold(
-            backgroundColor: Colors.white,
-            appBar: AppBar(
-              title: Text('Profile',
-                style: TextStyle(
-                    color: Colors.black
-                ),
+    return BlocConsumer<layoutCubit, LayoutState>(
+      listener: (context,state){},
+      builder: (context,state){
+        var cubit=layoutCubit.get(context);
+        var Model=cubit.model;
+        if (Model != null) {
+          return Scaffold(
+          backgroundColor: Colors.white,
+          appBar: AppBar(
+            title: Text('Profile',
+              style: TextStyle(
+                  color: Colors.black
               ),
-              backgroundColor: Colors.white,
-              elevation: 5,
             ),
-            body: Padding(
+            backgroundColor: Colors.white,
+            elevation: 5,
+          ),
+          body: SingleChildScrollView(
+            child: Padding(
               padding:  EdgeInsets.all( 8.0),
               child: Column(
 
@@ -48,7 +50,7 @@ class ProfileScreen extends StatelessWidget {
                       children: [
                         Align(
                           alignment: Alignment.topCenter,
-                          child: Image(image: NetworkImage(Model!.profile!),
+                          child: Image(image: NetworkImage(Model.profile!),
                               width: double.infinity,
                               height: 190,
                               fit:BoxFit.cover
@@ -217,14 +219,45 @@ class ProfileScreen extends StatelessWidget {
                       ),
                     ],
                   ),
+                  SizedBox(height: 20,),
+                  Container(
+                    width: double.infinity,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(5),
+                      color: Colors.orange,
+                    ),
 
+                    child: MaterialButton(onPressed: ()
+                    {
+                      CashHelper.RemoveItem(key: 'uId').then((value) {
+                        if(value)
+                          {
+
+                            Navigator.pushReplacement(context,
+                              MaterialPageRoute(builder: (context)=>LoginScreen()
+                              ),
+                            );
+                          }
+                      }).catchError((error){print(error.toString());});
+                    },
+                      child: Text('Sign out',
+                        style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 15
+                        ),
+                      ),
+                    ),
+                  ),
                 ],
               ),
-            ) ,
-          ):Center(child: CircularProgressIndicator());
-        },
+            ),
+          ) ,
+        );
+        } else {
+          return Center(child: CircularProgressIndicator());
+        }
+      },
 
-      ),
     );
   }
 }
